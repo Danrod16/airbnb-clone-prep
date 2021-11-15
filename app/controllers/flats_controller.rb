@@ -22,7 +22,7 @@ class FlatsController < ApplicationController
   # POST /flats
   def create
     @flat = Flat.new(flat_params)
-
+    @flat.user = current_user
     if @flat.save
       redirect_to @flat, notice: 'Flat was successfully created.'
     else
@@ -53,6 +53,6 @@ class FlatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flat_params
-      params.require(:flat).permit(:name, :description, :user_id)
+      params.require(:flat).permit(:name, :description)
     end
 end
