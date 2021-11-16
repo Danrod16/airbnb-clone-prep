@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Flats</h1>
-
+<h2><%= current_user.id %> </h2>
 <table>
   <thead>
     <tr>
@@ -19,8 +19,12 @@
         <td><%= flat.description %></td>
         <td><%= flat.user_id %></td>
         <td><%= link_to 'Show', flat %></td>
+        <% if policy(flat).edit? %>
         <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
-        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if policy(flat).destroy? %>
+          <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

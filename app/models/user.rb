@@ -4,4 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+ def admin?
+  self.role == "admin" #true/false
+ end
+
+ def renter?
+  self.role == "renter"
+ end
+
 end

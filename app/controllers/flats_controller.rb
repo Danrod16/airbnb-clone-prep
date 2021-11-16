@@ -3,20 +3,23 @@ class FlatsController < ApplicationController
 
   # GET /flats
   def index
-    @flats = Flat.all
+    @flats = policy_scope(Flat).order(created_at: :desc)
   end
 
   # GET /flats/1
   def show
+    authorize @flat
   end
 
   # GET /flats/new
   def new
     @flat = Flat.new
+    authorize @flat
   end
 
   # GET /flats/1/edit
   def edit
+    authorize @flat
   end
 
   # POST /flats
@@ -28,6 +31,7 @@ class FlatsController < ApplicationController
     else
       render :new
     end
+    authorize @flat
   end
 
   # PATCH/PUT /flats/1
@@ -37,12 +41,14 @@ class FlatsController < ApplicationController
     else
       render :edit
     end
+    authorize @flat
   end
 
   # DELETE /flats/1
   def destroy
     @flat.destroy
     redirect_to flats_url, notice: 'Flat was successfully destroyed.'
+    authorize @flat
   end
 
   private
