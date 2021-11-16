@@ -22,9 +22,9 @@
         <% if policy(flat).edit? %>
         <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
         <% end %>
-        <%# if policy(flat).destroy? %>
+        <% if policy(flat).destroy? %>
           <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%# end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
