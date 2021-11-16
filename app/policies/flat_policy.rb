@@ -14,7 +14,7 @@ class FlatPolicy < ApplicationPolicy
   end
 
   def create?
-    false || user.admin?
+    user
   end
 
   def edit?

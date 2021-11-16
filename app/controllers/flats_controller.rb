@@ -8,7 +8,6 @@ class FlatsController < ApplicationController
 
   # GET /flats/1
   def show
-    authorize @flat
   end
 
   # GET /flats/new
@@ -19,7 +18,6 @@ class FlatsController < ApplicationController
 
   # GET /flats/1/edit
   def edit
-    authorize @flat
   end
 
   # POST /flats
@@ -41,20 +39,19 @@ class FlatsController < ApplicationController
     else
       render :edit
     end
-    authorize @flat
   end
 
   # DELETE /flats/1
   def destroy
     @flat.destroy
     redirect_to flats_url, notice: 'Flat was successfully destroyed.'
-    authorize @flat
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_flat
       @flat = Flat.find(params[:id])
+      authorize @flat
     end
 
     # Only allow a list of trusted parameters through.
